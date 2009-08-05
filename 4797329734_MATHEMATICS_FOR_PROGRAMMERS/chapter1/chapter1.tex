@@ -1,88 +1,195 @@
 \documentclass[10pt, twocolumn]{jarticle}
 \usepackage[dvips]{graphicx}
+\usepackage{ascmac}
+\usepackage{fancybox}
 \title{『プログラマの数学 第一章』}
 \author{真幡康徳\thanks{株式会社ECナビ}}
 \begin{document}
 \maketitle
 \begin{abstract}
 我々の日常である10進法の世界から,2進法の世界,16進法の世界を覗いてみましょう.
-また,指数法則やゼロという特別な数字についても一緒に考えます。
+また,指数法則やゼロという特別な数字についても一緒に考えます.
 \end{abstract}
 
-\section{10進法 2進法 16進法}
+\section{10進法}
 
 10進法とは何でしょう.
-
-\section{コンピュータと2進法}
-
-コンピュータは2進法の値しか扱うことができません.
-それはなぜでしょうか.
-
-\subsection{初めての小セクション}
-
-foo bar
-
-\subsubsection{初めての小小セクション}
-
-hoge fuga
-
-\section{箇条書きをうへへ}
+10進法の数とは次の性質を持ちます.
 
 \begin{itemize}
-  \item 箇条書き1
-  \item 箇条書き2
-  \begin{itemize}
-    \item ネストされた箇条書き1
-    \item ネストされた箇条書き2
-  \end{itemize}
-  \item ネストから解放された箇条書き
+  \item 使う数字は0,1,2,3,4,5,6,7,8,9の10種類
+  \item 数の桁ごとに意味が異なる.右から1の位,10の位,100の位...となる
 \end{itemize}
 
-\section{番号付き箇条書きをうへへ}
+ここで,ある10進法の数「2503」について考えてみましょう.
+2503は,1000の位が2,100の位が5,10の位が0,1の位が3です.
+このことから,2503という数は次のようにも表現できます.
 
-\begin{enumerate}
-  \item 番号付き箇条書き1
-  \item 番号付き箇条書き2
-  \begin{enumerate}
-    \item ネストされた番号付き箇条書き1
-    \item ネストされた番号付き箇条書き2
-  \end{enumerate}
-  \item ネストから解放された番号付き箇条書き
-\end{enumerate}
+\begin{itemize}
+  \item 1000が2個あり
+  \item 100が5個あり
+  \item 10が0個あり
+  \item 1が3個ある数
+\end{itemize}
 
-\section{表組をうへへ}
+このことから2503は次の数式と等価です.
 
+\begin{displaymath}2503 = (2 * 1000) + (5 * 100) + (0 * 10) + (3 * 1)\end{displaymath}
+
+また,各位を指数で表現すると,更に次のようにも表現できます.
+
+\begin{displaymath}
+2503 = (2 * 10^3) + (5 * 10^2) + (0 * 10^1) + (3 * 10^0)
+\end{displaymath}
+
+このように10進法の位はすべて$10^n$という形をしています.
+この10のことを10進法の基数または底といいます.
+
+\section{2進法}
+
+2進法とは何でしょう.
+2進法の数とは次の性質を持ちます.
+
+\begin{itemize}
+  \item 使う数字は0,1の2種類
+  \item 数の桁ごとに意味が異なる.右から1の位,2の位,4の位...となる
+\end{itemize}
+
+10進法と類似していますね.
+
+\begin{table}[h]
 \begin{center}
-\begin{tabular}{|l|c|c|c|c|}\hline % 5段
-年度＼月 & 4月 & 7月 & 10月 & 1月 \\ \hline\hline
-平成8    &  55 &  20 &   10 &   7 \\ \hline
-平成8    &  40 &   7 &    5 &   3 \\ \hline
-\end{tabular}
-\end{center}
-
-\section{複数カラムを使用するなどした表組}
-
-\begin{table}[b]
-\begin{center}
-\caption{出席者の推移}
-\begin{tabular}{|l|c|c|c|c|}\hline
-        &  \multicolumn{4}{c|}{月} \\ \cline{2-5}
-  年度  &  4月 & 7月 & 10月 & 1月  \\ \hline
-  平成8 &  55  & 20  &  10  &  7   \\ \hline
-  平成9 &  40  &  7  &   5  &  3   \\ \hline
+\caption{10進法と2進法の対応}
+\begin{tabular}{|r|r|}\hline
+  10進法 & 2進法 \\ \hline\hline
+       0 &     0 \\ \hline
+       1 &     1 \\ \hline
+       2 &    10 \\ \hline
+       3 &    11 \\ \hline
+       4 &   100 \\ \hline
+       5 &   101 \\ \hline
+       6 &   110 \\ \hline
+       7 &   111 \\ \hline
+       8 &  1000 \\ \hline
+       9 &  1001 \\ \hline
+      10 &  1010 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
 
-\section{画像を読込む}
+ここで,ある2進法の数「1100」について考えてみましょう.
+1100は,8の位が1,4の位が1,2の位が0,1の位が0です.
+このことから,1100という数は次のようにも表現できます.
 
-\includegraphics{sample.eps}
+\begin{itemize}
+  \item 8が1個あり
+  \item 4が1個あり
+  \item 2が0個あり
+  \item 1が0個ある数
+\end{itemize}
 
-\section{脚注を入れる}
+このことから1100は次の数式と等価です.
 
-脚注\footnote{これが脚注です.}について.
+\begin{displaymath}
+1100_{(2進法)} = (1 * 8) + (1 * 4) + (0 * 2) + (0 * 1)
+\end{displaymath}
 
-\section{数式を書く}
+また,各位を指数で表現すると,更に次のようにも表現できます.
+
+\begin{displaymath}
+1100_{(2進法)} = (1 * 2^3) + (1 * 2^2) + (0 * 2^1) + (0 * 2^0)
+\end{displaymath}
+
+このように2進法の位はすべて$2^n$という形をしています.
+
+\subsection{基数変換}
+
+省略.
+
+\subsection{2進法とコンピュータ}
+
+コンピュータは2進法の値しか扱うことができません.
+それはなぜでしょうか.
+
+身も蓋もないことを言えば,コンピュータの実装が楽だからです.
+2進法であれば,取り得る2つの値は次のように表現できます.
+
+\begin{itemize}
+  \item スイッチが切れている状態 ... 0
+  \item スイッチが入っている状態 ... 1
+\end{itemize}
+
+しかし,人間にとって2進法は必ずしも理解しやすいものではないので,
+コンピュータが内部的に2進法で計算したものは,
+通常は10進法の表現に直した上で人間に提示されます.
+
+\section{位取り記数法}
+
+省略.
+ただし,位取り記数法が唯一の数の表現というわけではないということだけ押さえておきましょう.
+
+\section{指数法則}
+
+省略.
+口頭でお話します.
+
+\section{0の果たす役割}
+
+ゼロは「''ない''がある」ということを表現するために必要です.
+
+例えば,0を使わないで,一ヶ月の一日ごとの予定数を出力するプログラムを書こうとすると,
+次のようになります.
+
+\begin{itembox}[l]{0を使用しないプログラム}
+\begin{verbatim}
+<?php
+$calendar = array();
+$calendar[3] = 1;
+$calendar[9] = 1;
+$calendar[14] = 1;
+$calendar[16] = 3;
+$calendar[31] = 2;
+for ($i = 1; $i <= 31; $i++) {
+  # 本当は三項演算子を使います
+  if (isset($calendar[$i])) {
+    echo "{$i}日には、{$calendar[$i]}件予定があります。\n";
+  } else {
+    echo "{$i}日には、予定がありません。\n";
+  }
+}
+\end{verbatim}
+\end{itembox}
+
+0を使用して,類似の処理を行おうとすると,このようになります.
+
+\begin{itembox}[l]{0を使用したプログラム}
+\begin{verbatim}
+<?php
+$calendar = array(
+  0,0,0,3,0,0,0,0,0,1,
+  0,0,0,0,1,0,3,0,0,0,
+  0,0,0,0,0,0,0,0,0,0,
+  0,2
+);
+for ($i = 1; $i <= 31; $i++) {
+  echo "{$i}日には、{$calendar[$i]}件予定があります。\n";
+}
+\end{verbatim}
+\end{itembox}
+
+プログラムからifでの分岐が消えて,可読性が向上していることがわかるでしょう.
+
+\section{人間の限界と構造の発見}
+
+\begin{quote}
+「大きな問題は,小さな『まとまり』に分けて解け」.
+\end{quote}
+という,参考文献の記述について考えましょう.
+
+例えば,私たちは10桁の整数の四則演算を行うときに,頭の中でどういう計算をするでしょうか.
+おそらく,桁ごとに四則演算を適用し,最後に各桁の演算結果を結合し解とするでしょう.
+
+これは,複雑な問題を小さな問題に分割する例の典型的なものです.
 
 \begin{thebibliography}{9}
   \bibitem{Knuth}

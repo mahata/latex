@@ -1,0 +1,7 @@
+task :default => [:test]
+
+task :test do
+  system "platex -output-directory=chapter1 chapter1/chapter1.tex"
+  system "dvipdfmx -o chapter1/chapter1.pdf chapter1/chapter1.dvi"
+  system "open chapter1/chapter1.pdf"
+end

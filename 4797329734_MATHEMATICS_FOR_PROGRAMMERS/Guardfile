@@ -1,0 +1,7 @@
+# -*- coding: utf-8 -*-
+guard :shell do
+  # watch( %r{(.*)} ) {|m|
+  watch( %r{(.*\.tex)} ) {|m|
+    `rake`
+  }
+end
